@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-23",
+  "generatedAt": "2026-11-24T00:00:00.000Z",
+  "categories": [
+    {
+      "id": "politics",
+      "label": "정치",
+      "stories": [
+        {
+          "id": "politics-demo-1",
+          "title": "첫 자동 브리핑을 기다리고 있습니다",
+          "summary": "현재 화면은 디자인과 데이터 흐름을 확인하기 위한 예시입니다. GitHub Actions를 수동 실행하거나 생성 명령을 실행하면 전일 기사로 교체됩니다.",
+          "keyPoint": "OPENAI_API_KEY를 등록한 뒤 생성 작업을 실행하세요.",
+          "sources": [{ "publisher": "GitHub Docs", "title": "GitHub Actions 문서", "url": "https://docs.github.com/actions" }]
+        }
+      ]
+    },
+    { "id": "society-culture", "label": "사회·문화", "stories": [] },
+    { "id": "economy", "label": "경제", "stories": [] },
+    { "id": "tech-science", "label": "IT·과학", "stories": [] },
+    { "id": "sports", "label": "스포츠", "stories": [] }
+  ]
+}
