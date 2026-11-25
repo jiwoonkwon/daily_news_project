@@ -21,6 +21,7 @@ describe('App', () => {
       return new Response(JSON.stringify(url.endsWith('index.json') ? { dates: ['2026-11-23'], latest: '2026-11-23' } : briefing), { status: 200 })
     })
     render(<App />)
+    expect(screen.getByRole('heading', { level: 1, name: '지운 뉴스' })).toBeInTheDocument()
     expect(await screen.findByText('테스트 주요 뉴스')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /테스트뉴스 원문/ })).toHaveAttribute('href', 'https://example.com')
     expect(screen.getAllByText('선정된 주요 뉴스가 없습니다.')).toHaveLength(4)
