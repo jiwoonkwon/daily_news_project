@@ -74,10 +74,10 @@ export default function App() {
       <header className="masthead">
         <div className="brand-row">
           <span className="eyebrow">DAILY NEWS DIGEST</span>
-          <span className="edition">KOREA · MORNING EDITION</span>
+          <span className="edition">KOREA · EVENING EDITION</span>
         </div>
-        <h1>어제의 브리핑</h1>
-        <p className="dek">하루를 시작하기 전, 놓치지 말아야 할 어제의 뉴스</p>
+        <h1>오늘의 브리핑</h1>
+        <p className="dek">하루를 마무리하며, 놓치지 말아야 할 오늘의 뉴스</p>
       </header>
 
       {index && (

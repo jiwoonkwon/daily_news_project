@@ -9,7 +9,7 @@ vi.mock('openai', () => ({
   },
 }))
 
-import { summarize } from '../scripts/openai'
+import { isRelevantSource, summarize } from '../scripts/openai'
 
 const candidates: Candidate[] = [{
   id: 'source-1',
@@ -55,5 +55,11 @@ describe('OpenAI summarizer', () => {
     createResponse.mockResolvedValue({ output_text: invalidSources })
     await expect(summarize(candidates, '2026-11-23', 'test-key', 'test-model')).rejects.toThrow('OpenAI 요약 생성 또는 검증에 실패했습니다.')
     expect(createResponse).toHaveBeenCalledTimes(2)
+  })
+
+  it('요약 주제와 핵심 용어가 겹치지 않는 출처를 거부한다', () => {
+    const story = { title: '정부 디지털자산법 입법 추진', summary: '스테이블코인과 거래소 규제 방안이 공개됐습니다.', keyPoint: '가상자산 시장 제도화가 시작됩니다.' }
+    expect(isRelevantSource(story, candidates[0])).toBe(false)
+    expect(isRelevantSource(story, { ...candidates[0], title: '스테이블코인 규제 담은 디지털자산법 공개' })).toBe(true)
   })
 })

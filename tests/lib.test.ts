@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import type { FeedConfig } from '../config/feeds'
-import { canonicalUrl, deduplicate, filterForDate, normalizeTitle, parseFeed, previousKstDate, pruneAndIndex } from '../scripts/lib'
+import { canonicalUrl, currentKstDate, deduplicate, filterForDate, normalizeTitle, parseFeed, pruneAndIndex } from '../scripts/lib'
 
 const feed: FeedConfig = { publisher: '테스트뉴스', category: 'economy', url: 'https://example.com/rss', enabled: true }
 const rss = `<?xml version="1.0"?><rss><channel>
@@ -32,8 +32,8 @@ describe('RSS pipeline', () => {
     expect(canonicalUrl('https://example.com/a?utm_medium=rss#x')).toBe('https://example.com/a')
   })
 
-  it('한국시간의 전일을 계산한다', () => {
-    expect(previousKstDate(new Date('2026-11-24T00:30:00Z'))).toBe('2026-11-23')
+  it('한국시간의 당일을 계산한다', () => {
+    expect(currentKstDate(new Date('2026-11-24T00:30:00Z'))).toBe('2026-11-24')
   })
 })
 

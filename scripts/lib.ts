@@ -49,12 +49,9 @@ export function kstDateRange(targetDate: string) {
   return { start, end }
 }
 
-export function previousKstDate(now = new Date()) {
+export function currentKstDate(now = new Date()) {
   const formatter = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' })
-  const today = formatter.format(now)
-  const date = new Date(`${today}T00:00:00Z`)
-  date.setUTCDate(date.getUTCDate() - 1)
-  return date.toISOString().slice(0, 10)
+  return formatter.format(now)
 }
 
 export function parseFeed(xml: string, feed: FeedConfig): Candidate[] {

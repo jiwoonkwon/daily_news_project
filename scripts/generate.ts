@@ -1,10 +1,10 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { feeds } from '../config/feeds'
-import { deduplicate, filterForDate, parseFeed, previousKstDate, pruneAndIndex, type Candidate } from './lib'
+import { currentKstDate, deduplicate, filterForDate, parseFeed, pruneAndIndex, type Candidate } from './lib'
 import { summarize } from './openai'
 
-const targetDate = process.env.BRIEFING_DATE?.trim() || previousKstDate()
+const targetDate = process.env.BRIEFING_DATE?.trim() || currentKstDate()
 const apiKey = process.env.OPENAI_API_KEY
 const model = process.env.OPENAI_MODEL || 'gpt-5-mini'
 const outputDirectory = resolve('public/data/briefings')
@@ -15,7 +15,7 @@ async function fetchFeed(feed: (typeof feeds)[number]) {
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), 15_000)
   try {
-    const response = await fetch(feed.url, { signal: controller.signal, headers: { 'User-Agent': 'MorningBrief/1.0 (personal RSS reader)' } })
+    const response = await fetch(feed.url, { signal: controller.signal, headers: { 'User-Agent': 'DailyBrief/1.0 (personal RSS reader)' } })
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
     return filterForDate(parseFeed(await response.text(), feed), targetDate)
   } finally { clearTimeout(timeout) }

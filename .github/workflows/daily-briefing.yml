@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       date:
-        description: '생성할 날짜 (YYYY-MM-DD, 비우면 한국시간 전일)'
+        description: '생성할 날짜 (YYYY-MM-DD, 비우면 한국시간 당일)'
         required: false
         type: string
   schedule:
-    - cron: '0 7 * * *'
+    - cron: '0 19 * * *'
       timezone: 'Asia/Seoul'
 
 permissions:
